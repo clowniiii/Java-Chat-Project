@@ -14,6 +14,7 @@ public class Server {
 	ServerSocket server;
 	ArrayList<PrintWriter> list; //Client Writer
 	
+	//Nachrichtenstatus
 	final int ERROR = 1;
 	final int NORMAL = 0;
 	

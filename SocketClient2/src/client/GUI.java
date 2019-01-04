@@ -1,15 +1,15 @@
 package client;
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+//import client.Client.SendButtonMessage;
+
 import javax.swing.JLabel;
 
 public class GUI {
@@ -23,6 +23,7 @@ public class GUI {
 	private JTextField nickField;
 	private JLabel lblNickname;
 	Client model;
+	//SendButtonMessage smb = model.new SendButtonMessage(model);
 	
 	public JFrame getFrame() {
 		return frame;
@@ -66,15 +67,15 @@ public class GUI {
 	/**
 	 * Create the application.
 	 */
-	public GUI(Client model) {
+	public GUI() {
 		super();
-		initialize(model);
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Client model) {
+	private void initialize() {
 		
 		cl = new CardLayout();
 		
@@ -97,7 +98,7 @@ public class GUI {
 		btnSend = new JButton("Senden");
 		btnSend.setBounds(335, 227, 89, 23);
 		panel.add(btnSend);
-		btnSend.addActionListener(new SendMessageButton());
+		//btnSend.addActionListener(smb);
 	
 		typeField = new JTextField();
 		typeField.setBounds(135, 227, 190, 23);
@@ -113,16 +114,4 @@ public class GUI {
 		lblNickname.setBounds(245, 14, 62, 14);
 		panel.add(lblNickname);
 	}
-	
-	//ActionListener für Sende-Button
-		public class SendButtonMessage implements ActionListener{
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				model.sendMessageToServer();
-				
-			}
-			
-		}
 }

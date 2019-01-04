@@ -1,6 +1,8 @@
 package client;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,13 +20,13 @@ public class Client {
 
 	public static void main(String[] args) {
 		c = new Client();
-		screen = new GUI(c);
+		screen = new GUI();
 		
 		//GUI initialisieren 
 		screen.getFrame().setVisible(true);
 		
-		Thread t_message = new Thread(new ServerListener());
-		t_message.start();
+		//Thread t_message = new Thread(new ServerListener());
+		//t_message.start();
 	}
 	
 	//Konstruktor
@@ -49,6 +51,24 @@ public class Client {
 				e.printStackTrace();
 			}	
 		}
+	}
+	
+	//ActionListener für Sende-Button
+	public class SendButtonMessage implements ActionListener{
+		
+		Client c = new Client();
+		
+		public SendButtonMessage(Client c){
+			super();
+			this.c = c;
+		}
+				
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			c.sendMessageToServer();
+		}
+				
 	}
 	
 	public boolean connectToServer() {
