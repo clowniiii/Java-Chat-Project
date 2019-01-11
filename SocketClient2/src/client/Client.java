@@ -25,13 +25,23 @@ public class Client {
 		//GUI initialisieren 
 		screen.getFrame().setVisible(true);
 		
-		//Thread t_message = new Thread(new ServerListener());
-		//t_message.start();
+		c.createThread();
 	}
 	
 	//Konstruktor
 	public Client() {
 		super();
+	}
+	
+	public void createThread() {
+		
+		//Prüfen, ob eine Verbindung zum Server hergestellt werden konnte
+		if(!connectToServer()) {
+			System.out.println("Keine Verbindung möglich");
+		}
+		
+		Thread t_message = new Thread(new ServerListener());
+		t_message.start();
 	}
 		
 	public class ServerListener implements Runnable{
@@ -71,9 +81,11 @@ public class Client {
 				
 	}
 	
+	
+	//Überprüfen, ob Verbindung aufgebaut wurde oder nicht
 	public boolean connectToServer() {
 		try {
-			client = new Socket("127.0.0.1", 5555);
+			client = new Socket("aniira.de", 5555);
 			reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			appendMessage("Netzwerkverbindung hergestellt");
 			
